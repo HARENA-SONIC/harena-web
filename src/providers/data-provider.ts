@@ -38,7 +38,7 @@ export const dataProvider: DataProvider = {
       data: response,
       total: response.length,
       pageInfo: {
-        //FIXME: fix pagination
+        // FIXME: fix pagination: one way to do it is to fetch the next page and check if there are still elements
         hasNextPage: response.length >= (pagination?.perPage || 10),
         hasPreviousPage: (pagination?.page || 1) > 1,
       },

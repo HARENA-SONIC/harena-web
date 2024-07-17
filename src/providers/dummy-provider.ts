@@ -29,13 +29,14 @@ const DUMMIES_MOCK: Dummy[] = [
 ];
 
 export const dummyProvider: HarenaDataProvider<Dummy> = {
-  getList: (_page, _pageSize, _filter, _sort, _meta) => {
+  getList: () => {
     return Promise.resolve(DUMMIES_MOCK);
   },
-  getOne: (id, _meta) => {
+  getOne: (id) => {
     return Promise.resolve(DUMMIES_MOCK.find((dummy) => dummy.id == id)!);
   },
-  saveOrUpdate: (_payload, meta) => {
+  saveOrUpdate: (payload, meta) => {
+    console.log(payload);
     const { mutationType } = meta;
     if (mutationType === 'CREATE') {
       throw new Error('Not implemented');
