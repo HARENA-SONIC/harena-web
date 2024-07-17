@@ -1,4 +1,5 @@
 import { Admin, Resource } from 'react-admin';
+import { Layout } from './layout';
 import { harenaDarkTheme, harenaLightTheme } from './harena-theme';
 import { authProvider } from './providers/auth-provider';
 import { dataProvider } from './providers';
@@ -9,6 +10,7 @@ const Dashboard = () => (
     requireAuth
     title="Harena"
     defaultTheme="dark"
+    layout={Layout}
     lightTheme={harenaLightTheme}
     darkTheme={harenaDarkTheme}
     authProvider={authProvider}
