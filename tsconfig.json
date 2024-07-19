@@ -1,9 +1,11 @@
 {
   "compilerOptions": {
+    "types": ["cypress", "node"],
     "paths": {
       "@/*": ["./src/*"]
     }
   },
+  "include": ["cypress"],
   "files": [],
   "references": [
     {

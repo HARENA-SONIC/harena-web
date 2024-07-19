@@ -1,0 +1,9 @@
+{
+  "$schema": "https://on.cypress.io/cypress.schema.json",
+  "video": false,
+  "viewportWidth": 800,
+  "component": {
+    "testFiles": "**/*.cy.{js,jsx,ts,tsx}",
+    "componentFolder": "src/__test__"
+  }
+}
