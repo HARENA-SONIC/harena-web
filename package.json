@@ -9,7 +9,10 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "test:open": "concurrently \"npm run dev\" \"npx cypress open\"",
+    "test:e2e": "cypress run --spec cypress/e2e/**/*",
+    "test:unit": "cypress run --component"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -29,6 +32,8 @@
     "@typescript-eslint/eslint-plugin": "^7.15.0",
     "@typescript-eslint/parser": "^7.15.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
+    "concurrently": "^8.2.2",
+    "cypress": "^13.13.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react-hooks": "^4.6.2",
