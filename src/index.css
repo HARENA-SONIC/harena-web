@@ -5,3 +5,15 @@ body {
   padding: 0;
   margin: 0;
 }
+
+.font-quicksand {
+  font-family: quicksand, sans-serif;
+}
+
+.font-montserrat {
+  font-family: montserrat, sans-serif;
+}
+
+.font-roboto {
+  font-family: Roboto, sans-serif;
+}
