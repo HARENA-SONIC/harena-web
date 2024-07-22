@@ -1,8 +1,22 @@
-import { Datagrid, List, TextField } from 'react-admin';
+import {
+  CreateButton,
+  Datagrid,
+  List,
+  TextField,
+  TopToolbar,
+} from 'react-admin';
+
+export const PatrimoineListActions = () => {
+  return (
+    <TopToolbar>
+      <CreateButton />
+    </TopToolbar>
+  );
+};
 
 export const PatrimoineList = () => {
   return (
-    <List>
+    <List actions={<PatrimoineListActions />}>
       <Datagrid>
         <TextField source="nom" label="Nom" />
       </Datagrid>
