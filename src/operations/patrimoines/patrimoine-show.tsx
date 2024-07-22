@@ -1,4 +1,5 @@
 import {
+  DateField,
   EditButton,
   Show,
   SimpleShowLayout,
@@ -22,6 +23,8 @@ export const PatrimoineShow = () => {
     <Show id={id} actions={<PatrimoineShowActions />}>
       <SimpleShowLayout>
         <TextField source="nom" label="Nom" />
+        <DateField source="t" label="Date T" />
+        <TextField source="possesseur.nom" label="Possesseur" />
       </SimpleShowLayout>
     </Show>
   );

@@ -1,6 +1,7 @@
 import {
   CreateButton,
   Datagrid,
+  DateField,
   List,
   TextField,
   TopToolbar,
@@ -17,8 +18,10 @@ export const PatrimoineListActions = () => {
 export const PatrimoineList = () => {
   return (
     <List actions={<PatrimoineListActions />}>
-      <Datagrid>
+      <Datagrid bulkActionButtons={false}>
         <TextField source="nom" label="Nom" />
+        <DateField source="t" label="Date T" />
+        <TextField source="possesseur.nom" label="Possesseur" />
       </Datagrid>
     </List>
   );

@@ -9,5 +9,5 @@ export const PATRIMOINE_UI: UI = {
   show: PatrimoineShow,
   create: PatrimoineCreate,
   edit: PatrimoineEdit,
-  recordRepresentation: "nom"
+  recordRepresentation: 'nom',
 };
