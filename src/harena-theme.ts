@@ -1,8 +1,5 @@
-import {
-  defaultLightTheme,
-  defaultDarkTheme,
-  RaThemeOptions,
-} from 'react-admin';
+import { RaThemeOptions } from 'react-admin';
+import { deepmerge } from '@mui/utils';
 
 export const commonComponentsTheme: Partial<RaThemeOptions['components']> = {
   MuiTextField: {
@@ -33,18 +30,42 @@ export const commonComponentsTheme: Partial<RaThemeOptions['components']> = {
   },
 };
 
+const commonThemeOption: RaThemeOptions = {
+  typography: {
+    h1: {
+      fontFamily: 'montserrat',
+    },
+    h2: {
+      fontFamily: 'montserrat',
+    },
+    h3: {
+      fontFamily: 'roboto',
+    },
+    h4: {
+      fontFamily: 'roboto',
+    },
+    h5: {},
+  },
+  shape: {
+    borderRadius: 8,
+  },
+};
+
+const lightTheme = deepmerge(commonThemeOption, {} as RaThemeOptions);
+const darkTheme = deepmerge(commonThemeOption, {} as RaThemeOptions);
+
 export const harenaLightTheme: RaThemeOptions = {
-  ...defaultLightTheme,
+  ...lightTheme,
   components: {
-    ...defaultLightTheme.components,
+    ...lightTheme.components,
     ...commonComponentsTheme,
   },
 };
 
 export const harenaDarkTheme = {
-  ...defaultDarkTheme,
+  ...darkTheme,
   components: {
-    ...defaultDarkTheme.components,
+    ...darkTheme.components,
     ...commonComponentsTheme,
   },
 };
