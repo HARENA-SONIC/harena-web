@@ -1,6 +1,6 @@
 import { Admin, Resource } from 'react-admin';
 import { Layout } from './layout';
-import { harenaDarkTheme, harenaLightTheme } from './harena-theme';
+import { darkTheme, lightTheme } from './assets/theme';
 import { authProvider } from './providers/auth-provider';
 import { dataProvider } from './providers';
 import { DUMMY_UI } from './operations/dummies';
@@ -11,8 +11,8 @@ const Dashboard = () => (
     title="Harena"
     defaultTheme="dark"
     layout={Layout}
-    lightTheme={harenaLightTheme}
-    darkTheme={harenaDarkTheme}
+    lightTheme={lightTheme}
+    darkTheme={darkTheme}
     authProvider={authProvider}
     dataProvider={dataProvider}
   >
