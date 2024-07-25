@@ -10,8 +10,8 @@ export const getProvider = (resource: string): HarenaDataProvider<any> => {
       return dummyProvider;
     case 'patrimoines':
       return patrimoineProvider;
-      case 'possessions':
-        return possessionProvider;
+    case 'possessions':
+      return possessionProvider;
     default:
       throw new Error('Unknown resource type');
   }

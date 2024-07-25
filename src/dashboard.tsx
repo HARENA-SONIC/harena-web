@@ -5,7 +5,7 @@ import { authProvider } from './providers/auth-provider';
 import { dataProvider } from './providers';
 import { DUMMY_UI } from './operations/dummies';
 import { PATRIMOINE_UI } from './operations/patrimoines';
-import { POSSESSION_UI } from "./operations/posssessions";
+import { POSSESSION_UI } from './operations/posssessions';
 
 const Dashboard = () => (
   <Admin
