@@ -9,9 +9,13 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "test:open": "concurrently \"npm run dev\" \"npx cypress open\"",
+    "test:e2e": "cypress run --spec cypress/e2e/**/*",
+    "test:unit": "cypress run --component"
   },
   "dependencies": {
+    "@harena-com/typescript-client": "^1.0.0",
     "@hookform/resolvers": "^3.9.0",
     "@tanstack/react-query": "^5.51.4",
     "axios": "^1.7.2",
@@ -29,12 +33,21 @@
     "@typescript-eslint/eslint-plugin": "^7.15.0",
     "@typescript-eslint/parser": "^7.15.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
+    "concurrently": "^8.2.2",
+    "cypress": "^13.13.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
+    "husky": "^9.1.1",
+    "lint-staged": "^15.2.7",
     "prettier": "^3.3.3",
     "typescript": "^5.2.2",
     "vite": "^5.3.4"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css,md}": [
+      "prettier --write"
+    ]
   }
 }

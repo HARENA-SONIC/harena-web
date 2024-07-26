@@ -5,6 +5,7 @@ export const Menu = () => {
     <RaMenu>
       {/* <RaMenu.Item to="/" leftIcon={<ProfileIcon />} primaryText="Profile" /> */}
       <RaMenu.ResourceItem name="dummies" />
+      <RaMenu.ResourceItem name="patrimoines" />
     </RaMenu>
   );
 };
