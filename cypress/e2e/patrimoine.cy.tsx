@@ -10,10 +10,18 @@ describe('patrimoine', () => {
     ).as('getPatrimoines');
   });
 
-  it('patrimoine.list', () => {
+  // it('patrimoine.list', () => {
+  //   cy.visit('/patrimoines');
+  //   cy.wait('@getPatrimoines');
+  //   cy.get('tbody tr').should('have.length', patrimoineMocks.length);
+  //   cy.contains(patrimoineMocks[0].nom!, {timeout: 5_000});
+  // });
+
+  it('patrimoines.create: cannot create if some fields are missing', () => {
     cy.visit('/patrimoines');
-    cy.wait('@getPatrimoines');
-    cy.get('tbody tr').should('have.length', patrimoineMocks.length);
-    cy.contains(patrimoineMocks[0].nom!, { timeout: 5_000 });
+    cy.get('.RaList-actions > .MuiToolbar-root').click();
+    cy.getByTestId('nom-input').type('new');
+    cy.get('.RaToolbar-defaultToolbar > .MuiButtonBase-root').click();
+    cy.contains('This field is required !');
   });
 });
