@@ -8,10 +8,23 @@ export const PatrimoineCreate = () => {
   return (
     <Create id={id}>
       <SimpleForm>
-        <TextInput fullWidth source="nom" label="Nom" validate={required()} />
-        <DateInput fullWidth source="t" label="Date T" validate={required()} />
+        <TextInput
+          data-testid="nom-input"
+          fullWidth
+          source="nom"
+          label="Nom"
+          validate={required()}
+        />
+        <DateInput
+          data-testid="t-input"
+          fullWidth
+          source="t"
+          label="Date T"
+          validate={required()}
+        />
         <TextInput
           fullWidth
+          data-testid="possesseur-input"
           source="possesseur.nom"
           label="Possesseur"
           validate={required()}
