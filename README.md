@@ -1,13 +1,6 @@
-# harena - web
+# harena-web
 
-### Prod
+# Env
 
-```
-    https://prod.du109ash2jnw6.amplifyapp.com
-```
-
-### Preprod
-
-```
-   https://preprod.du109ash2jnw6.amplifyapp.com
-```
+- prod: [https://prod.du109ash2jnw6.amplifyapp.com](https://prod.du109ash2jnw6.amplifyapp.com)
+- preprod: [https://preprod.du109ash2jnw6.amplifyapp.com](https://preprod.du109ash2jnw6.amplifyapp.com)
