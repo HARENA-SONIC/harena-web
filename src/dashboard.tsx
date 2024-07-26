@@ -5,6 +5,7 @@ import { authProvider } from './providers/auth-provider';
 import { dataProvider } from './providers';
 import { DUMMY_UI } from './operations/dummies';
 import { PATRIMOINE_UI } from './operations/patrimoines';
+import { POSSESSION_UI } from './operations/posssessions';
 
 const Dashboard = () => (
   <Admin
@@ -19,6 +20,7 @@ const Dashboard = () => (
   >
     <Resource name="dummies" {...DUMMY_UI} />
     <Resource name="patrimoines" {...PATRIMOINE_UI} />
+    <Resource name="possessions" {...POSSESSION_UI} />
   </Admin>
 );
 
