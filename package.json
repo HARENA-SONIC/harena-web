@@ -38,8 +38,6 @@
     "@vitejs/plugin-react-swc": "^3.5.0",
     "concurrently": "^8.2.2",
     "cypress": "^13.13.1",
-    "cypress-multi-reporters": "^1.6.4",
-    "cypress-sonarqube-reporter": "^1.13.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react-hooks": "^4.6.2",
