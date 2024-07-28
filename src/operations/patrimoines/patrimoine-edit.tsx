@@ -8,11 +8,25 @@ export const PatrimoineEdit = () => {
   return (
     <Edit patrimoine="patrimoines" id={id}>
       <SimpleForm>
-        <TextInput fullWidth source="nom" label="Nom" validate={required()} />
-        <DateInput fullWidth source="t" label="Date T" validate={required()} />
+        <TextInput
+          fullWidth
+          readOnly
+          data-testid="nom-input"
+          source="nom"
+          label="Nom"
+          validate={required()}
+        />
+        <DateInput
+          data-testid="t-input"
+          fullWidth
+          source="t"
+          label="Date T"
+          validate={required()}
+        />
         <TextInput
           fullWidth
           source="possesseur.nom"
+          data-testid="possesseur-input"
           label="Possesseur"
           validate={required()}
         />
