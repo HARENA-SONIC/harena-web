@@ -1,13 +1,10 @@
 import { DataProvider } from 'react-admin';
 import { HarenaDataProvider } from './types';
-import { dummyProvider } from './dummy-provider';
 import { patrimoineProvider } from './patrimoine-provider';
 import { possessionProvider } from './possession-provider';
 
 export const getProvider = (resource: string): HarenaDataProvider<any> => {
   switch (resource) {
-    case 'dummies':
-      return dummyProvider;
     case 'patrimoines':
       return patrimoineProvider;
     case 'possessions':

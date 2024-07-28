@@ -19,7 +19,11 @@ export const PatrimoineListActions = () => {
 
 export const PatrimoineList = () => {
   return (
-    <List actions={<PatrimoineListActions />}>
+    <List
+      resource="patrimoines"
+      empty={false}
+      actions={<PatrimoineListActions />}
+    >
       <Datagrid bulkActionButtons={false}>
         <TextField source="nom" label="Nom" />
         <DateField source="t" label="Date T" />

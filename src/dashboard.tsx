@@ -1,11 +1,11 @@
-import { Admin, Resource } from 'react-admin';
+import { Admin, CustomRoutes, Resource } from 'react-admin';
+import { Route } from 'react-router-dom';
 import { Layout } from './layout';
 import { darkTheme, lightTheme } from './assets/theme';
 import { authProvider } from './providers/auth-provider';
 import { dataProvider } from './providers';
-import { DUMMY_UI } from './operations/dummies';
 import { PATRIMOINE_UI } from './operations/patrimoines';
-import { POSSESSION_UI } from './operations/posssessions';
+import { PossessionEdit, PossessionShow } from './operations/posssessions';
 
 const Dashboard = () => (
   <Admin
@@ -18,9 +18,18 @@ const Dashboard = () => (
     authProvider={authProvider}
     dataProvider={dataProvider}
   >
-    <Resource name="dummies" {...DUMMY_UI} />
     <Resource name="patrimoines" {...PATRIMOINE_UI} />
-    <Resource name="possessions" {...POSSESSION_UI} />
+    <Resource name="possessions" />
+    <CustomRoutes>
+      <Route
+        path="/patrimoines/:patrimoineNom/possessions/:possessionNom/show"
+        element={<PossessionShow />}
+      />
+      <Route
+        path="/patrimoines/:patrimoineNom/possessions/:possessionNom/edit"
+        element={<PossessionEdit />}
+      />
+    </CustomRoutes>
   </Admin>
 );
 
