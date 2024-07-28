@@ -1,7 +1,7 @@
 import { Create, DateInput, SimpleForm, TextInput } from 'react-admin';
+import { Patrimoine } from '@harena-com/typescript-client';
 import { useParams } from 'react-router-dom';
 import { required } from '@/operations/common/input-validator';
-import { Patrimoine } from '@harena-com/typescript-client';
 
 export const PatrimoineCreate = () => {
   const { id } = useParams();

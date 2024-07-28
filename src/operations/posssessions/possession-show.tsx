@@ -7,14 +7,21 @@ import {
   TextField,
   TopToolbar,
 } from 'react-admin';
-import { Create as EditIcon } from '@mui/icons-material';
+import { Create as EditIcon, ArrowBack } from '@mui/icons-material';
 import { useParams } from 'react-router-dom';
 import { renderMoney } from '../common/utils/typo';
 
 const PossessionShowActions = () => {
   const { patrimoineNom, possessionNom } = useParams();
+
   return (
-    <TopToolbar>
+    <TopToolbar sx={{ justifyContent: 'space-between' }}>
+      <Button
+        href={`/#/patrimoines/${patrimoineNom}/show`}
+        label={patrimoineNom}
+        startIcon={<ArrowBack />}
+        size="medium"
+      />
       <Button
         href={`/#/patrimoines/${patrimoineNom}/possessions/${possessionNom}/edit`}
         startIcon={<EditIcon />}
@@ -41,7 +48,9 @@ export const PossessionShow = () => {
         <DateField source="t" label="Date T" />
         <TextField source="patrimoine.nom" label="Patrimoine" />
         <FunctionField
-          render={(possession) => renderMoney(possession.valeur_comptable)}
+          render={(possession) =>
+            renderMoney(possession.valeur_comptable, possession.devise)
+          }
           label="Valeur Comptable"
         />
       </SimpleShowLayout>

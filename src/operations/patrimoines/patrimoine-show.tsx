@@ -1,7 +1,6 @@
 import {
   DateField,
   EditButton,
-  FunctionField,
   Show,
   SimpleShowLayout,
   TabbedShowLayout,
@@ -10,7 +9,6 @@ import {
 } from 'react-admin';
 import { PossessionList } from '../posssessions/possession-list';
 import { useParams } from 'react-router-dom';
-import { renderMoney } from '../common/utils/typo';
 
 const PatrimoineShowActions = () => {
   return (
@@ -29,13 +27,14 @@ export const PatrimoineShow = () => {
         <TextField source="nom" label="Nom" />
         <DateField source="t" label="Date T" />
         <TextField source="possesseur.nom" label="Possesseur" />
-        <FunctionField
-          render={(patrimoine) => renderMoney(patrimoine.valeur_comptable)}
-          label="Valeur Comptable"
-        />
+        <TextField source="valeur_comptable" label="Valeur Comptable" />
       </SimpleShowLayout>
       <TabbedShowLayout>
-        <TabbedShowLayout.Tab label="Posssession" path="">
+        <TabbedShowLayout.Tab
+          data-testid="patrimoine-possession-list"
+          label="Posssession"
+          path=""
+        >
           <PossessionList patrimoineNom={id!} />
         </TabbedShowLayout.Tab>
       </TabbedShowLayout>

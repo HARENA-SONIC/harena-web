@@ -78,6 +78,11 @@ const createTheme = (palette: CatpuccinPalletes, mode: 'light' | 'dark') => {
           },
         },
       },
+      RaList: {
+        defaultProps: {
+          empty: false,
+        },
+      },
     },
   };
   return createMuiTheme(options);
