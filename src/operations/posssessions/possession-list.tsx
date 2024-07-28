@@ -15,6 +15,7 @@ import {
   DialogContent,
 } from '@mui/material';
 import { Add as CreateIcon } from '@mui/icons-material';
+import { Possession } from '@harena-com/typescript-client';
 import { PossessionCreate } from './possession-create';
 import { renderMoney } from '../common/utils/typo';
 import { useToggle } from '../common/hooks';
@@ -28,7 +29,7 @@ export const PossessionListActions = ({
     <TopToolbar>
       <Button
         startIcon={<CreateIcon />}
-        label="Create"
+        label="Add new Possession"
         onClick={toggleCreateDialog}
       />
     </TopToolbar>
@@ -48,12 +49,11 @@ export const PossessionList = ({
     <>
       <List
         title=""
-        empty={false}
         resource="possessions"
+        queryOptions={{ meta: { patrimoineNom } }}
         actions={
           <PossessionListActions toggleCreateDialog={toggleCreateDialog} />
         }
-        queryOptions={{ meta: { patrimoineNom } }}
       >
         <Datagrid
           bulkActionButtons={false}
@@ -67,8 +67,10 @@ export const PossessionList = ({
           <TextField source="nom" label="Nom" />
           <DateField source="t" label="Date T" />
           <FunctionField
-            render={(possession) => renderMoney(possession.valeur_comptable)}
             label="Valeur Comptable"
+            render={(possession: Possession) =>
+              renderMoney(possession.valeur_comptable!, possession.devise!)
+            }
           />
         </Datagrid>
       </List>

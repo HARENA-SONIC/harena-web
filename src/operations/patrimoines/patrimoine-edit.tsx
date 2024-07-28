@@ -1,4 +1,11 @@
-import { DateInput, Edit, SimpleForm, TextInput } from 'react-admin';
+import {
+  DateInput,
+  Edit,
+  ShowButton,
+  SimpleForm,
+  TextInput,
+  TopToolbar,
+} from 'react-admin';
 import { useParams } from 'react-router-dom';
 import { required } from '@/operations/common/input-validator';
 
@@ -6,7 +13,15 @@ export const PatrimoineEdit = () => {
   const { id } = useParams();
 
   return (
-    <Edit patrimoine="patrimoines" id={id}>
+    <Edit
+      actions={
+        <TopToolbar>
+          <ShowButton />
+        </TopToolbar>
+      }
+      patrimoine="patrimoines"
+      id={id}
+    >
       <SimpleForm>
         <TextInput
           fullWidth
