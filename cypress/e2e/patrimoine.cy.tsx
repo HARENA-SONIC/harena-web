@@ -57,4 +57,23 @@ describe('patrimoines', () => {
       expect(body).to.be.deep.equal(MUTATION_PATRIMOINE);
     });
   });
+
+  it('patrimoine.edit', () => {
+    cy.visit('/patrimoines');
+    cy.wait('@getPatrimoines');
+    cy.get('tbody tr').first().click();
+    cy.wait('@getPatrimoines');
+    cy.get('.RaList-actions > .MuiToolbar-root > .MuiButtonBase-root').click();
+    cy.getByTestId('nom-input').clear().type(MUTATION_PATRIMOINE.data[0].nom!);
+    cy.getByTestId('t-input').clear().type(MUTATION_PATRIMOINE.data[0].t!);
+    cy.getByTestId('possesseur-input')
+      .clear()
+      .type(MUTATION_PATRIMOINE.data[0].possesseur!.nom!);
+    cy.get('.RaToolbar-defaultToolbar > .MuiButtonBase-root').click();
+
+    cy.wait('@putPatrimoines').then((intercept) => {
+      const body = intercept.request.body;
+      expect(body).to.be.deep.equal(MUTATION_PATRIMOINE);
+    });
+  });
 });
