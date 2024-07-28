@@ -1,15 +1,15 @@
-import { DateInput, Edit, SimpleForm, TextInput } from 'react-admin';
-import { useParams } from 'react-router-dom';
-import { required } from '@/operations/common/input-validator';
+import { FC } from 'react';
+import { Create, DateInput, SimpleForm, TextInput } from 'react-admin';
+import { required } from '../common/input-validator';
 
-export const PossessionEdit = () => {
-  const { patrimoineNom, possessionNom } = useParams();
-
+export const PossessionCreate: FC<{ patrimoineNom: string }> = ({
+  patrimoineNom,
+}) => {
   return (
-    <Edit
-      id={possessionNom}
-      queryOptions={{ meta: { patrimoineNom } }}
+    <Create
       resource="possessions"
+      title=""
+      mutationOptions={{ meta: { patrimoineNom } }}
     >
       <SimpleForm>
         <TextInput fullWidth source="nom" label="Nom" validate={required()} />
@@ -21,6 +21,6 @@ export const PossessionEdit = () => {
           validate={required()}
         />
       </SimpleForm>
-    </Edit>
+    </Create>
   );
 };

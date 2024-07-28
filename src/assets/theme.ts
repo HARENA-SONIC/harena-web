@@ -1,3 +1,4 @@
+import { RaThemeOptions } from 'react-admin';
 import { createTheme as createMuiTheme, ThemeOptions } from '@mui/material';
 import {
   catpuccinLatte,
@@ -8,7 +9,7 @@ import {
 const createTheme = (palette: CatpuccinPalletes, mode: 'light' | 'dark') => {
   const titles = { fontFamily: 'montserrat', color: palette.text['main'] };
   const commonText = { fontFamily: 'comfortaa', color: palette.text['1'] };
-  const options: ThemeOptions = {
+  const options: ThemeOptions & RaThemeOptions = {
     shadows: [] as string[] as ThemeOptions['shadows'],
     typography: {
       h1: titles,
@@ -57,6 +58,23 @@ const createTheme = (palette: CatpuccinPalletes, mode: 'light' | 'dark') => {
         defaultProps: {
           sx: {
             color: palette.text.main,
+          },
+        },
+      },
+      MuiFormControl: {
+        defaultProps: {
+          size: 'small',
+        },
+      },
+      MuiTextField: {
+        defaultProps: {
+          size: 'small',
+        },
+      },
+      RaToolbar: {
+        styleOverrides: {
+          root: {
+            backgroundColor: 'transparent',
           },
         },
       },

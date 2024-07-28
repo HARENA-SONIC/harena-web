@@ -6,7 +6,7 @@ export const PatrimoineEdit = () => {
   const { id } = useParams();
 
   return (
-    <Edit id={id}>
+    <Edit patrimoine="patrimoines" id={id}>
       <SimpleForm>
         <TextInput fullWidth source="nom" label="Nom" validate={required()} />
         <DateInput fullWidth source="t" label="Date T" validate={required()} />
