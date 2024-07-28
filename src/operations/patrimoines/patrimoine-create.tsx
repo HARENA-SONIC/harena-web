@@ -1,12 +1,19 @@
 import { Create, DateInput, SimpleForm, TextInput } from 'react-admin';
 import { useParams } from 'react-router-dom';
 import { required } from '@/operations/common/input-validator';
+import { Patrimoine } from '@harena-com/typescript-client';
 
 export const PatrimoineCreate = () => {
   const { id } = useParams();
 
   return (
-    <Create id={id}>
+    <Create
+      id={id}
+      transform={(patrimoine: Partial<Patrimoine>): Patrimoine => ({
+        ...patrimoine,
+        valeur_comptable: 0,
+      })}
+    >
       <SimpleForm>
         <TextInput
           data-testid="nom-input"
@@ -16,16 +23,16 @@ export const PatrimoineCreate = () => {
           validate={required()}
         />
         <DateInput
-          data-testid="t-input"
           fullWidth
+          data-testid="t-input"
           source="t"
           label="Date T"
           validate={required()}
         />
         <TextInput
           fullWidth
-          data-testid="possesseur-input"
           source="possesseur.nom"
+          data-testid="possesseur-input"
           label="Possesseur"
           validate={required()}
         />

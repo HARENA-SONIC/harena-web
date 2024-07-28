@@ -1,2 +1,2 @@
 export * from './patrimoine-mocks';
-export * from './possesseur-mocks';
+export * from './person-mocks';
