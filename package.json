@@ -45,6 +45,7 @@
     "husky": "^9.1.1",
     "lint-staged": "^15.2.7",
     "prettier": "^3.3.3",
+    "sonarqube-scanner": "^4.0.1",
     "typescript": "^5.2.2",
     "vite": "^5.3.4",
     "vite-plugin-istanbul": "^6.0.2",
