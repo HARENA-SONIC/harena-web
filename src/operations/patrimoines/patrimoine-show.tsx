@@ -15,7 +15,7 @@ import { renderMoney } from '../common/utils/typo';
 const PatrimoineShowActions = () => {
   return (
     <TopToolbar>
-      <EditButton />
+      <EditButton data-testid="edit-button" />
     </TopToolbar>
   );
 };

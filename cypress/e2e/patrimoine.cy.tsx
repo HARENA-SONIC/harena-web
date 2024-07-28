@@ -17,14 +17,22 @@ describe('patrimoines', () => {
   beforeEach(() => {
     cy.intercept(
       'GET',
-      '/RCKPRINCY/hei-ricka/1.0.1/patrimoines?page=1&page_size=10',
+      '**patrimoines?page=1&page_size=10',
       listMock(patrimoineMocks)
     ).as('getPatrimoines');
+    cy.intercept('PUT', '**patrimoines', MUTATION_PATRIMOINE).as(
+      'putPatrimoines'
+    );
     cy.intercept(
-      'PUT',
-      '/RCKPRINCY/hei-ricka/1.0.1/patrimoines',
-      MUTATION_PATRIMOINE
-    ).as('putPatrimoines');
+      'GET',
+      `**/patrimoines/${patrimoineMocks[0].nom}`,
+      patrimoineMocks[0]
+    ).as('getOnePatrimoine');
+    cy.intercept(
+      'GET',
+      `**/patrimoines/${patrimoineMocks[0].nom}/possessions?page=1&page_size=10`,
+      []
+    );
   });
 
   it.skip('patrimoines.list', () => {
@@ -55,6 +63,30 @@ describe('patrimoines', () => {
     cy.wait('@putPatrimoines').then((intercept) => {
       const body = intercept.request.body;
       expect(body).to.be.deep.equal(MUTATION_PATRIMOINE);
+    });
+  });
+
+  it('patrimoine.edit', () => {
+    cy.visit('/patrimoines');
+    cy.wait('@getPatrimoines');
+    cy.get('tbody tr').first().click();
+    cy.wait('@getOnePatrimoine');
+    cy.getByTestId('edit-button').click();
+    cy.getByTestId('t-input').type(MUTATION_PATRIMOINE.data[0].t!);
+    cy.getByTestId('possesseur-input')
+      .clear()
+      .type(MUTATION_PATRIMOINE.data[0].possesseur!.nom!);
+    cy.get('.RaToolbar-defaultToolbar > .MuiButton-contained')
+      .as('saveButton')
+      .click();
+    cy.wait('@putPatrimoines').then((intercept) => {
+      const body = intercept.request.body.data[0];
+      expect(body).to.be.deep.equal({
+        ...MUTATION_PATRIMOINE.data[0],
+        id: patrimoineMocks[0].nom,
+        nom: patrimoineMocks[0].nom,
+        valeur_comptable: patrimoineMocks[0].valeur_comptable,
+      });
     });
   });
 });
