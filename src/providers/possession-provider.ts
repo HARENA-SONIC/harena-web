@@ -10,11 +10,14 @@ import { addIdField } from './utils';
 export const getPossessionTypeValue = (value: PossessionAvecType) => {
   switch (value.type) {
     case 'ARGENT':
-      return { ...value.argent!, type: PossessionAvecTypeTypeEnum.ARGENT };
+      return { ...value.argent!, typeEx: PossessionAvecTypeTypeEnum.ARGENT };
     case 'FLUXARGENT':
-      return { ...value.argent!, type: PossessionAvecTypeTypeEnum.FLUXARGENT };
+      return {
+        ...value.argent!,
+        typeEx: PossessionAvecTypeTypeEnum.FLUXARGENT,
+      };
     case 'MATERIEL':
-      return { ...value.argent!, tyep: PossessionAvecTypeTypeEnum.MATERIEL };
+      return { ...value.argent!, typeEx: PossessionAvecTypeTypeEnum.MATERIEL };
     default:
       throw new Error('Unknown PossessionAvecType value');
   }

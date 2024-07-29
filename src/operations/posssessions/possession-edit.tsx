@@ -2,12 +2,15 @@ import {
   Button,
   DateInput,
   Edit,
+  number,
   SimpleForm,
   TextInput,
   TopToolbar,
   useRedirect,
 } from 'react-admin';
 import { RemoveRedEye } from '@mui/icons-material';
+import { Possession } from '@harena-com/typescript-client';
+import { DeviseInputs, DeviseType, getDeviseValue } from './possession-create';
 import { useParams } from 'react-router-dom';
 import { required } from '@/operations/common/input-validator';
 
@@ -34,16 +37,23 @@ export const PossessionEdit = () => {
           />
         </TopToolbar>
       }
+      transform={(possession: Possession & { devise: DeviseType }) => ({
+        ...possession,
+        devise: getDeviseValue(possession.devise),
+      })}
+      redirect={false}
     >
       <SimpleForm>
         <TextInput fullWidth source="nom" label="Nom" validate={required()} />
         <DateInput fullWidth source="t" label="Date T" validate={required()} />
-        <TextInput
+        <DateInput
           fullWidth
-          source="patrimoine.nom"
-          label="Patrimoine"
-          validate={required()}
+          source="valeur_comptable"
+          label="Valeur Comptable"
+          validate={[required(), number()]}
         />
+        <DeviseInputs source="devise" />
+        <DeviseInputs source="devise" />
       </SimpleForm>
     </Edit>
   );

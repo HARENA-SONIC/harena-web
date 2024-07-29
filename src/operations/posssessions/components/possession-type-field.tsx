@@ -21,7 +21,7 @@ export const PossessionTypeField = () => (
     render={(possession) => (
       <Chip
         label={possession.type}
-        color={getPossessionFieldColor(possession.type)}
+        color={getPossessionFieldColor(possession.typeEx)}
       />
     )}
   />

@@ -11,6 +11,11 @@ import { PossessionTypeField } from './components';
 import { Create as EditIcon, ArrowBack } from '@mui/icons-material';
 import { useParams } from 'react-router-dom';
 import { renderMoney } from '../common/utils/typo';
+import { ShowField } from './possession-create';
+import {
+  Possession,
+  PossessionAvecTypeTypeEnum,
+} from '@harena-com/typescript-client';
 
 const PossessionShowActions = () => {
   const { patrimoineNom, possessionNom } = useParams();
@@ -47,7 +52,6 @@ export const PossessionShow = () => {
       <SimpleShowLayout>
         <TextField source="nom" label="Nom" />
         <DateField source="t" label="Date T" />
-        <TextField source="patrimoine.nom" label="Patrimoine" />
         <FunctionField
           render={(possession) =>
             renderMoney(possession.valeur_comptable, possession.devise)
@@ -55,6 +59,13 @@ export const PossessionShow = () => {
           label="Valeur Comptable"
         />
         <PossessionTypeField />
+        <ShowField
+          shouldShow={(
+            record: Possession & { type: PossessionAvecTypeTypeEnum }
+          ) => record.type === 'ARGENT'}
+        >
+          <TextField source="typeEx" />
+        </ShowField>
       </SimpleShowLayout>
     </Show>
   );
