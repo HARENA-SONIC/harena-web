@@ -89,4 +89,11 @@ describe('patrimoines', () => {
       });
     });
   });
+
+  it('patrimoine.show', () => {
+    cy.visit('/patrimoines');
+    cy.wait('@getPatrimoines');
+    cy.get('tbody tr').first().click();
+    cy.contains(patrimoineMocks[0].nom!);
+  });
 });
