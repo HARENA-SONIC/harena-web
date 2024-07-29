@@ -30,7 +30,7 @@ export const addPossessionId = (possession: PossessionAvecType) => {
 export const possessionProvider: HarenaDataProvider<Possession> = {
   getOne: async (possessionNom, { patrimoineNom }) => {
     return possessionApi()
-      .getPatrimoinePossessionByNom(possessionNom, patrimoineNom)
+      .getPatrimoinePossessionByNom(patrimoineNom, possessionNom)
       .then((response) => addPossessionId(response.data));
   },
   getList: async (page, pageSize, _filter, _sort, { patrimoineNom }) => {

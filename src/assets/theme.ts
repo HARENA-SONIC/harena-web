@@ -10,7 +10,7 @@ const createTheme = (palette: CatpuccinPalletes, mode: 'light' | 'dark') => {
   const titles = { fontFamily: 'montserrat', color: palette.text['main'] };
   const commonText = { fontFamily: 'comfortaa', color: palette.text['1'] };
   const options: ThemeOptions & RaThemeOptions = {
-    shadows: [] as string[] as ThemeOptions['shadows'],
+    shadows: Array(25).fill('') as string[] as ThemeOptions['shadows'],
     typography: {
       h1: titles,
       h2: titles,
