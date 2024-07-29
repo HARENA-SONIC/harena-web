@@ -28,12 +28,12 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY}}
           aws-region: ${{ secrets.AWS_REGION }}
       - run: ./scripts/init-npm.sh  harena-store npm-hei-school 088312068315 eu-west-3
-      
+
       - name: Run e2e tests
         uses: cypress-io/github-action@v6
         with:
           start: npm run dev
-          
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:

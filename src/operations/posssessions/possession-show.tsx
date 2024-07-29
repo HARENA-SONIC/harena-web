@@ -7,6 +7,7 @@ import {
   TextField,
   TopToolbar,
 } from 'react-admin';
+import { PossessionTypeField } from './components';
 import { Create as EditIcon, ArrowBack } from '@mui/icons-material';
 import { useParams } from 'react-router-dom';
 import { renderMoney } from '../common/utils/typo';
@@ -53,6 +54,7 @@ export const PossessionShow = () => {
           }
           label="Valeur Comptable"
         />
+        <PossessionTypeField />
       </SimpleShowLayout>
     </Show>
   );

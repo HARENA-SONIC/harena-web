@@ -17,6 +17,7 @@ import {
 import { Add as CreateIcon } from '@mui/icons-material';
 import { Possession } from '@harena-com/typescript-client';
 import { PossessionCreate } from './possession-create';
+import { PossessionTypeField } from './components';
 import { renderMoney } from '../common/utils/typo';
 import { useToggle } from '../common/hooks';
 
@@ -72,6 +73,7 @@ export const PossessionList = ({
               renderMoney(possession.valeur_comptable!, possession.devise!)
             }
           />
+          <PossessionTypeField />
         </Datagrid>
       </List>
       <Dialog
