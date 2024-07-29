@@ -9,6 +9,7 @@ import {
 } from 'react-admin';
 import { PossessionList } from '../posssessions/possession-list';
 import { useParams } from 'react-router-dom';
+import { ProjectionShow } from '../projection-futures/flux-dargent-list';
 
 const PatrimoineShowActions = () => {
   return (
@@ -36,6 +37,13 @@ export const PatrimoineShow = () => {
           path=""
         >
           <PossessionList patrimoineNom={id!} />
+        </TabbedShowLayout.Tab>
+        <TabbedShowLayout.Tab
+          data-testid="patrimoine-projection-list"
+          label="Projection"
+          path="projection"
+        >
+          <ProjectionShow />
         </TabbedShowLayout.Tab>
       </TabbedShowLayout>
     </Show>
