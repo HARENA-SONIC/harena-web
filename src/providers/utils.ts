@@ -1,7 +1,12 @@
 import { Configuration } from '@harena-com/typescript-client';
 
+export const normalize = (value: string) => {
+  //@ts-ignore
+  return value.replaceAll(' ', '_');
+};
+
 export const addIdField = <T>(data: T, key: keyof T) => {
-  return { ...data, id: data[key] };
+  return { ...data, id: normalize(data[key] as string) };
 };
 
 export const BASE_PATH = process.env.REACT_APP_HARENA_COM_API!;

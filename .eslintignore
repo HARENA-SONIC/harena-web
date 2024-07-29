@@ -1,3 +1,5 @@
 src/gen/client/*.ts
 .nyc_output
 coverage
+src/providers/**
+cypress/support/**
