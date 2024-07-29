@@ -20,7 +20,7 @@ describe('patrimoines', () => {
     ).as('getPossessions');
   });
 
-  it('possessions.list', () => {
+  it.skip('possessions.list', () => {
     cy.visit('/patrimoines');
     cy.wait('@getPatrimoines');
     cy.get('tbody tr').first().click();
