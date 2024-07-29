@@ -12,6 +12,7 @@ import {
 } from 'react-admin';
 import { Argent, Possession } from '@harena-com/typescript-client';
 import { useWatch } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 import { required } from '../common/input-validator';
 
 export type DeviseType = 'MGA' | 'EUR' | 'CAD';
@@ -107,7 +108,8 @@ export const DeviseInputs = ({ source }: { source: string }) => {
 
 const getRightPossessionValue = async (
   possession: Record<string, unknown>,
-  devise: { nom: string; code: string }
+  devise: { nom: string; code: string },
+  patrimoineNom: string
 ) => {
   const obj = {
     argent: {},
@@ -115,7 +117,13 @@ const getRightPossessionValue = async (
     flux_argent: {},
   };
   if (possession.typeEx === 'FLUX_ARGENT') {
-    const possessions = await possessionProvider.getList(1, 500, {}, {}, {});
+    const possessions = await possessionProvider.getList(
+      1,
+      500,
+      {},
+      {},
+      { patrimoineNom }
+    );
     const argent: Possession = possessions.filter(
       (v) => v.nom == possession['argent']
     )?.[0];
@@ -158,7 +166,8 @@ export const PossessionCreate: FC<{ patrimoineNom: string }> = ({
           {
             nom: devise.label,
             code: devise.code,
-          }
+          },
+          patrimoineNom
         );
         return {
           type: possession.typeEx,
@@ -221,10 +230,14 @@ export const PossessionCreate: FC<{ patrimoineNom: string }> = ({
 };
 
 export const ArgentInput = () => {
-  const { data: possesssions = [], isLoading } = useGetList('possesssions', {
+  const { id: patrimoineNom } = useParams();
+  const { data: possesssions = [], isLoading } = useGetList('possessions', {
     pagination: {
       page: 1,
       perPage: 500,
+    },
+    meta: {
+      patrimoineNom,
     },
   });
   const CHOICES = possesssions
