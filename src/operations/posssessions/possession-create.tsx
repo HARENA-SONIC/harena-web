@@ -1,3 +1,4 @@
+import { possessionProvider } from '@/providers';
 import { FC, ReactNode } from 'react';
 import {
   Create,
@@ -104,6 +105,41 @@ export const DeviseInputs = ({ source }: { source: string }) => {
   );
 };
 
+const getRightPossessionValue = async (
+  possession: Record<string, unknown>,
+  devise: { nom: string; code: string }
+) => {
+  const obj = {
+    argent: {},
+    materiel: {},
+    flux_argent: {},
+  };
+  if (possession.typeEx === 'FLUX_ARGENT') {
+    const possessions = await possessionProvider.getList(1, 500, {}, {}, {});
+    const argent: Possession = possessions.filter(
+      (v) => v.nom == possession['argent']
+    )?.[0];
+    obj['flux_argent'] = {
+      devise,
+      t: possession.t,
+      nom: possession.nom,
+      debut: possession.debut,
+      fin: possession.fin,
+      valeur_comptable: possession.valeur_comptable,
+      flux_mensuel: possession.flux_mensuel,
+      date_d_operation: possession.date_d_operation,
+      argent,
+    };
+  } else {
+    const field = possession.typeEx === 'ARGENT' ? 'argent' : 'materiel';
+    obj[field] = {
+      ...possession,
+      devise,
+    };
+  }
+  return obj;
+};
+
 export const PossessionCreate: FC<{ patrimoineNom: string }> = ({
   patrimoineNom,
 }) => {
@@ -113,10 +149,22 @@ export const PossessionCreate: FC<{ patrimoineNom: string }> = ({
       title=""
       redirect={false}
       mutationOptions={{ meta: { patrimoineNom } }}
-      transform={(possession: Possession & { devise: DeviseType }) => ({
-        ...possession,
-        devise: getDeviseValue(possession.devise),
-      })}
+      transform={async (
+        possession: Possession & { typeEx: string; devise: DeviseType }
+      ) => {
+        const devise = getDeviseValue(possession.devise);
+        const possessionValue = await getRightPossessionValue(
+          possession as unknown as Record<string, unknown>,
+          {
+            nom: devise.label,
+            code: devise.code,
+          }
+        );
+        return {
+          type: possession.typeEx,
+          ...possessionValue,
+        };
+      }}
     >
       <SimpleForm>
         <TextInput fullWidth source="nom" label="Nom" validate={required()} />
