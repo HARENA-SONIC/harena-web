@@ -50,6 +50,7 @@ export const PossessionList = ({
     <>
       <List
         title=""
+        empty={false}
         resource="possessions"
         queryOptions={{ meta: { patrimoineNom } }}
         actions={
