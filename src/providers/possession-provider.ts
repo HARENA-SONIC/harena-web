@@ -1,4 +1,8 @@
-import { Possession, PossessionAvecType } from '@harena-com/typescript-client';
+import {
+  Possession,
+  PossessionAvecType,
+  PossessionAvecTypeTypeEnum,
+} from '@harena-com/typescript-client';
 import { HarenaDataProvider } from './types';
 import { possessionApi } from './api';
 import { addIdField } from './utils';
@@ -6,11 +10,14 @@ import { addIdField } from './utils';
 export const getPossessionTypeValue = (value: PossessionAvecType) => {
   switch (value.type) {
     case 'ARGENT':
-      return value.argent!;
+      return { ...value.argent!, typeEx: PossessionAvecTypeTypeEnum.ARGENT };
     case 'FLUXARGENT':
-      return value.flux_argent!;
+      return {
+        ...value.argent!,
+        typeEx: PossessionAvecTypeTypeEnum.FLUXARGENT,
+      };
     case 'MATERIEL':
-      return value.materiel!;
+      return { ...value.argent!, typeEx: PossessionAvecTypeTypeEnum.MATERIEL };
     default:
       throw new Error('Unknown PossessionAvecType value');
   }

@@ -6,7 +6,7 @@
   "lines": 80,
   "report-dir": "coverage",
   "reporter": ["json", "lcov", "html"],
-  "extension": [".jsx", ".tsx", "ts", "js"],
+  "extension": [".jsx", ".tsx"],
   "include": ["src"],
   "exclude": ["node_modules"]
 }

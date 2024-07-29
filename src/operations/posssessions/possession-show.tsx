@@ -7,14 +7,27 @@ import {
   TextField,
   TopToolbar,
 } from 'react-admin';
-import { Create as EditIcon } from '@mui/icons-material';
+import { PossessionTypeField } from './components';
+import { Create as EditIcon, ArrowBack } from '@mui/icons-material';
 import { useParams } from 'react-router-dom';
 import { renderMoney } from '../common/utils/typo';
+import { ShowField } from './possession-create';
+import {
+  Possession,
+  PossessionAvecTypeTypeEnum,
+} from '@harena-com/typescript-client';
 
 const PossessionShowActions = () => {
   const { patrimoineNom, possessionNom } = useParams();
+
   return (
-    <TopToolbar>
+    <TopToolbar sx={{ justifyContent: 'space-between' }}>
+      <Button
+        href={`/#/patrimoines/${patrimoineNom}/show`}
+        label={patrimoineNom}
+        startIcon={<ArrowBack />}
+        size="medium"
+      />
       <Button
         href={`/#/patrimoines/${patrimoineNom}/possessions/${possessionNom}/edit`}
         startIcon={<EditIcon />}
@@ -39,11 +52,20 @@ export const PossessionShow = () => {
       <SimpleShowLayout>
         <TextField source="nom" label="Nom" />
         <DateField source="t" label="Date T" />
-        <TextField source="patrimoine.nom" label="Patrimoine" />
         <FunctionField
-          render={(possession) => renderMoney(possession.valeur_comptable)}
+          render={(possession) =>
+            renderMoney(possession.valeur_comptable, possession.devise)
+          }
           label="Valeur Comptable"
         />
+        <PossessionTypeField />
+        <ShowField
+          shouldShow={(
+            record: Possession & { type: PossessionAvecTypeTypeEnum }
+          ) => record.type === 'ARGENT'}
+        >
+          <TextField source="typeEx" />
+        </ShowField>
       </SimpleShowLayout>
     </Show>
   );
